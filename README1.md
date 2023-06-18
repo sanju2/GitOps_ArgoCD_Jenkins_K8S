@@ -1,9 +1,9 @@
 # personal_blog_website
 Personal Blog Website Hosted on AWS
 
-![Diagram](Personal-Blog-Website.jpeg)
+![Diagram](Architecture-Diagram_GitOps_Project.png)
 
-[Personal Website Link](https://devopswithlasantha.tech/).
+<!-- [Personal Website Link](https://devopswithlasantha.tech/). -->
 
 [Blog Post Link](https://dev.to/aws-builders/how-i-built-my-personal-blog-site-using-aws-services-51l7).
 

@@ -11,9 +11,9 @@
 
 > Used to follow the steps.
 
-1. Create two repositories (buildimage, update manifest)
+1. Create two repositories (buildimage, update manifest).
 
-2. Install jenkins on ec2 and configure jenkins. Install docker & git on ec2
+2. Install jenkins on EC2 and configure Jenkins. Install Gocker & Git on EC2.
 
 Install the following plugins for the demo.
 - Amazon EC2 plugin (No need to set up Configure Cloud after)
@@ -22,17 +22,17 @@ Install the following plugins for the demo.
 - GitHub Integration Plugin
 - Parameterized trigger Plugin
 
-3. create jenkins 1 job - build image. select build image repo
+3. Create Jenkins 1 job - build image. Used this repository.
 
-4. create jenkins 2 job - update manifest. select update manifest rep0
+4. Create Jenkins 2 job - update manifest. Select update manifest repository.
 
-5. Run build image job. See docker image is updated.
+5. Run build image job. You can see docker image is updated.
 
-6. Create EKS Cluster. and update .kubeconfig file.
+6. Create EKS Cluster and update .kubeconfig file.
 
-7. install argo cd using kubernetes. and login console.
+7. Install argo cd using kubernetes and login console.
 
-8. create argo cd app. and configure github hook.
+8. Create argo cd app and configure github hook.
 
 9. Setup Prometheus & Grafana for Monitoring On Kubernetes Cluster.
 

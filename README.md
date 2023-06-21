@@ -1,18 +1,19 @@
-## What this does?
-This repo along with https://github.com/saha-rajdeep/kubernetesmanifest creates a Jenkins pipeline with GitOps to deploy code into a Kubernetes cluster. CI part is done via Jenkins and CD part via ArgoCD (GitOps).
+## Jenkins pipeline with GitOps(ArgoCD) to deploy code into a Kubernete. 
 
-## Jenkins installation
-Jenkins is installed on EC2. Follow the instructions on https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/ . You can skip "Configure a Cloud" part for this demo. Please note some commands from this link might give errors, below are the workarounds:
+- CI - Jenkins 
+- CD - ArgoCD (GitOps)
+- monitoring - Prometheus & Grafana
 
-1. If you get daemonize error while running the command `sudo yum install jenkins java-1.8.0-openjdk-devel -y` then , run the commands from the answer of https://stackoverflow.com/questions/68806741/how-to-fix-yum-update-of-jenkins
+## Architectural Diagram
+![ Architectural Diagram](Architecture-Diagram_GitOps_Project.png)
 
-2. Install Docker on the EC2 after Jenkins is installed by following the instructions on https://serverfault.com/questions/836198/how-to-install-docker-on-aws-ec2-instance-with-ami-ce-ee-update
+### [Manifest Repo](https://github.com/sanju2/manifest-repo)
 
-3. Run `sudo chmod 666 /var/run/docker.sock` on the EC2 after Docker is installed.
+> Used to follow the steps.
 
-4. Install Git on the EC2 by running `sudo yum install git`
+1. Create two repositories (buildimage, update manifest)
 
-### Jenkins plugins
+2. Install jenkins on ec2 and configure jenkins. Install docker & git on ec2
 
 Install the following plugins for the demo.
 - Amazon EC2 plugin (No need to set up Configure Cloud after)
@@ -21,9 +22,56 @@ Install the following plugins for the demo.
 - GitHub Integration Plugin
 - Parameterized trigger Plugin
 
-## ArgoCD installation 
+3. create jenkins 1 job - build image. select build image repo
 
-Install ArgoCD in your Kubernetes cluster following this link - https://argo-cd.readthedocs.io/en/stable/getting_started/
+4. create jenkins 2 job - update manifest. select update manifest rep0
 
-## How to run!
-Follow along with my Udemy Kubernetes course lectures (GitOps Chapter) to understand how it works, detailed setup instructions, with step by step demo. My highest rated Kubernetes EKS discounted Udemy course link in www.cloudwithraj.com
+5. Run build image job. See docker image is updated.
+
+6. Create EKS Cluster. and update .kubeconfig file.
+
+7. install argo cd using kubernetes. and login console.
+
+8. create argo cd app. and configure github hook.
+
+9. Setup Prometheus & Grafana for Monitoring On Kubernetes Cluster.
+
+> Screenshots
+
+### EC2 Instance (Jenkins Server)
+![Jenkins Server](screenshots/JenkinsServer.png)
+
+### Build Jenkins job
+![Jenkins Server 1](screenshots/Jenkins1.png)
+
+### Manifest Update Jenkins job
+![Jenkins Server 2](screenshots/Jenkins2.png)
+
+### Jenkins Home Page
+![Jenkins Server 3](screenshots/Jenkins3.png)
+
+### ArgoCD Dashboard
+![ArgoCD](screenshots/Argo-CD.png)
+
+### Prometheus Dashboard
+![Prometheus](screenshots/prometheus.png)
+
+### Grafana Dashboard
+![Grafana](screenshots/Grafana.png)
+
+### Final Output
+![Output](screenshots/Final_Output.png)
+
+## Resources
+
+[Jenkins Install on AWS EC2](https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS)
+
+[Docker install on EC2](https://serverfault.com/questions/836198/how-to-install-docker-on-aws-ec2-instance-with-ami-ce-ee-update)
+
+[ArgoCD Install](https://argo-cd.readthedocs.io/en/stable/getting_started)
+
+[Prometheus](https://devopscube.com/setup-prometheus-monitoring-on-kubernetes)
+
+[Grafana](https://devopscube.com/setup-grafana-kubernetes)
+
+### Thank You! :shipit:

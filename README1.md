@@ -1,34 +1,54 @@
-# personal_blog_website
-Personal Blog Website Hosted on AWS
+## Jenkins pipeline with GitOps(ArgoCD) to deploy code into a Kubernete. 
 
-![Diagram](Architecture-Diagram_GitOps_Project.png)
+- CI - Jenkins 
+- CD - ArgoCD (GitOps)
 
-<!-- [Personal Website Link](https://devopswithlasantha.tech/). -->
+## Architectural Diagram
+![ Architectural Diagram](Architecture-Diagram_GitOps_Project.png).
 
-[Blog Post Link](https://dev.to/aws-builders/how-i-built-my-personal-blog-site-using-aws-services-51l7).
+### [Manifest Repo](https://github.com/sanju2/manifest-repo)
 
 ### Used to follow the steps.
 
- - Step 1 : Build my blog site in HTML with CSS.
+1. Create two repositories (buildimage, update manifest)
 
-- Step 2 : Created an S3 bucket to store portfolio files.
+2. Install jenkins on ec2 and configure jenkins. Install docker & git on ec2
 
-- Step 3 : Create Route53 Hosted zone and add copy NS records. Next, paste the ns record domain provider nameservers section.
+3. create jenkins 1 job - build image. select build image repo
 
-- Step 4 : Next, go to the S3 bucket and enable Static website hosting, and map the Index document and Error document.
+4. create jenkins 2 job - update manifest. select update manifest rep0
 
-- Step 5 : Requested a public certificate for your domain in AWS Certificate Manager(ACM).
+5. Run build image job. See docker image is updated.
 
-- Step 6 : Setup a CloudFront Distribution. Select S3 Static website hosting bucket endpoint and ACM public certificate.
+6. Create EKS Cluster. and update .kubeconfig file.
 
-- Step 7 : Next, create a Lambda function for the Visitor Count display. Used Python 3.9 runtime.
+7. install argo cd using kubernetes. and login console.
 
-- Step 8 : Created DynamoDB table for Visitor count.
+8. create argo cd app. and configure github hook.
 
-- Step 9 : Created APIGateway REST API and Invoke Lambda function.
+9. Setup Prometheus for Monitoring On Kubernetes Cluster.
 
-- Step 10 : Create a git repository and push code.
+## Screenshots
 
-- Step 11 : Create CodeBuild Build project for deploying S3 static website files and Lambda function codes.
+### EC2 Instance (Jenkins Server)
+![Jenkins Server](screenshots/JenkinsServer.png).
 
-- Step 12 : Finally, create an AWS code pipeline and deploy your latest release.
+### Build Jenkins job
+![Jenkins Server 1](screenshots/Jenkins1.png).
+
+### Manifest Update Jenkins job
+![Jenkins Server 2](screenshots/Jenkins2.png).
+
+### Jenkins Home Page
+![Jenkins Server 3](screenshots/Jenkins3.png).
+
+### ArgoCD Dashboard
+![ArgoCD](screenshots/Argo-CD.png).
+
+### Prometheus Dashboard
+![Prometheus](screenshots/Jenkins1.png).
+
+### Final Output
+![Output](screenshots/Final_Output.png).
+
+@Sanju2 :+1: Thank You! :shipit:
